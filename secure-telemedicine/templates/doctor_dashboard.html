@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Welcome Dr. {{ doctor.name }}</h2>
+
+    <h3>Update Profile</h3>
+    <form method="POST" action="{{ url_for('doctor_dashboard') }}">
+        Specialization: 
+        <select name="specialization">
+            <option value="General" {% if doctor.specialization == 'General' %}selected{% endif %}>General</option>
+            <option value="Cardiologist" {% if doctor.specialization == 'Cardiologist' %}selected{% endif %}>Cardiologist</option>
+            <option value="Dermatologist" {% if doctor.specialization == 'Dermatologist' %}selected{% endif %}>Dermatologist</option>
+            <option value="Pediatrician" {% if doctor.specialization == 'Pediatrician' %}selected{% endif %}>Pediatrician</option>
+            <option value="Neurologist" {% if doctor.specialization == 'Neurologist' %}selected{% endif %}>Neurologist</option>
+        </select><br>
+        Experience: <input type="text" name="experience" value="{{ doctor.experience or '' }}"><br>
+        Council ID: <input type="text" name="council_id" value="{{ doctor.council_id or '' }}"><br>
+        Availability: <input type="text" name="availability" value="{{ doctor.availability or '' }}"><br>
+        Fee/Hour: <input type="text" name="fee_hour" value="{{ doctor.fee_hour or '' }}"><br>
+        Fee/Day: <input type="text" name="fee_day" value="{{ doctor.fee_day or '' }}"><br>
+        Fee/Month: <input type="text" name="fee_month" value="{{ doctor.fee_month or '' }}"><br>
+        Video Call Link: <input type="text" name="video_link" value="{{ doctor.video_link or '' }}"><br>
+        Contact: <input type="text" name="contact" value="{{ doctor.contact or '' }}"><br>
+        Address: <input type="text" name="address" value="{{ doctor.address or '' }}"><br>
+        <input type="submit" value="Update">
+    </form>
+
+    <form method="POST" action="/doctor/delete_profile" style="margin-top:10px;">
+        <input type="submit" value="Delete Profile" onclick="return confirm('Are you sure you want to delete your profile? This action cannot be undone.');">
+    </form>
+
+    <h3>Post Prescription</h3>
+    <form method="POST" action="{{ url_for('doctor_dashboard') }}">
+        Patient Email: <input type="email" name="patient_email"><br>
+        Disease: <input type="text" name="disease"><br>
+        Prescription: <textarea name="prescription"></textarea><br>
+        <input type="submit" value="Post">
+    </form>
+
+    <h3>Your Posted Prescriptions</h3>
+    {% for pres in posted_prescriptions %}
+        <div class="doctor-card">
+            <strong>Patient:</strong> {{ pres.patient_email }}<br>
+            <strong>Disease:</strong> {{ pres.disease }}<br>
+            <strong>Prescription:</strong> {{ pres.prescription }}<br>
+            <form action="/doctor/edit_prescription/{{ pres._id }}" method="GET" style="display:inline;">
+                <input type="submit" value="Edit">
+            </form>
+            <form action="/doctor/delete_prescription/{{ pres._id }}" method="POST" style="display:inline;">
+                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this prescription?');">
+            </form>
+        </div>
+    {% endfor %}
+
+    <h3>Appointments Booked by Patients</h3>
+    {% for app in appointments %}
+        <div class="doctor-card">
+            <strong>Patient:</strong> {{ app.patient_name }}<br>
+            <strong>Date:</strong> {{ app.date_time }}<br>
+            <strong>Message:</strong> {{ app.message }}<br>
+            <strong>Feedback:</strong> {{ app.feedback or 'Not Given' }}<br>
+        </div>
+    {% endfor %}
+
+    <a href="/logout">Logout</a>
+</body>
+</html>

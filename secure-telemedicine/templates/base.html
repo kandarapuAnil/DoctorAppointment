@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Patient Portal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Welcome to Doctor-Patient Portal</h1>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    <footer>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => alert.style.display = 'none', 3000);
+            });
+        });
+    </script>
+</body>
+</html>

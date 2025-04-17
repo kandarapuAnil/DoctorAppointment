@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Available Doctors</h2>
+    {% for doc in doctors %}
+        <div class="doctor-card">
+            <h3>Dr. {{ doc.name }} ({{ doc.specialization }})</h3>
+            <p>Experience: {{ doc.experience }}</p>
+            <p>Availability: {{ doc.availability }}</p>
+            <p>Fees: ₹{{ doc.fee_hour }}/hr | ₹{{ doc.fee_day }}/day | ₹{{ doc.fee_month }}/month</p>
+            <p>Video Call: <a href="{{ doc.video_link }}" target="_blank">Join</a></p>
+            <a href="/doctor/{{ doc._id }}">View Details</a>
+        </div>
+    {% endfor %}
+
+    <h2>Your Prescriptions</h2>
+    {% for pres in prescriptions %}
+        <div class="doctor-card">
+            <strong>Disease:</strong> {{ pres.disease }}<br>
+            <strong>Prescription:</strong> {{ pres.prescription }}<br>
+            <strong>From:</strong> Dr. {{ pres.doctor_name }}
+        </div>
+    {% endfor %}
+
+    <a href="/logout">Logout</a>
+    <a href="/patient_dashboard">Back</a>
+</body>
+</html>

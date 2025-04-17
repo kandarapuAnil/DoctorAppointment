@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Details</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Dr. {{ doctor.name }}</h2>
+    <p>Specialization: {{ doctor.specialization }}</p>
+    <p>Experience: {{ doctor.experience }}</p>
+    <p>Fees: Hourly - {{ doctor.fee_hour }}, Daily - {{ doctor.fee_day }}, Monthly - {{ doctor.fee_month }}</p>
+    <p>Availability: {{ doctor.availability }}</p>
+    <p>Contact: {{ doctor.contact }}</p>
+    <p>Address: {{ doctor.address }}</p>
+    <a href="/book/{{ doctor._id }}">Book Appointment</a>
+    <form action="/feedback/{{ doctor._id }}" method="POST">
+        <h3>Leave Feedback</h3>
+        Rating: <input type="number" name="rating" min="1" max="5"><br>
+        Comment: <textarea name="comment"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    <a href="/patient_dashboard">Back</a>
+</body>
+</html>

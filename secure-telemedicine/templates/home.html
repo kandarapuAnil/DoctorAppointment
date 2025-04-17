@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor-Patient Portal</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body.home-page {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('/static/AA.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            width: 100%;
+            top: 0;
+            box-sizing: border-box;
+        }
+
+        header a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            margin-top: 150px;
+        }
+
+        .main-content h1 {
+            font-size: 3em;
+            margin-bottom: 40px;
+        }
+
+        .main-content a {
+            margin: 0 15px;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .main-content a:hover {
+            background-color: #0052a3;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            color: #ccc;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="home-page">
+    <header>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/contact">Contact</a>
+    </header>
+
+    <div class="main-content">
+        <h1>Welcome to Doctor-Patient Portal</h1>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+    </div>
+
+    <footer>
+        © 2025 Doctor-Patient Portal. All rights reserved.
+    </footer>
+</body>
+</html>
